@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	{% if estaDisp(habitacion.id) != true %}
+		<div>
+			<h3>{{ habitacion }} del hotel {{ nombreHotel }}</h3>
+			<div>
+				<div>Planta: {{ habitacion.planta }}</div>
+				<div>Tipo Habitación: {{ habitacion.idtipohab }}</div>
+			</div>
+			<div>
+				<h4>Ocupada</h4>
+				<div>
+					Personas:
+					<ul>
+					{% for persona in personas %}
+						<li>{{ persona.nombre }}&nbsp;{{ persona.apellidos }}</li>
+					{% endfor %}
+					</ul>
+				</div>
+				<div>
+					Desde el 
+					{{ registro.fechaentrada|date("m/d/Y") }} 
+					hasta 
+					{{ registro.fechasalida|date("m/d/Y") }}
+				</div>
+				<div>
+					Precio final: <b>{{ precioTotal }} €</b>.
+					{% if registro.estaPagado == 1 %}
+						Ya pagado.
+					{% else %}
+						Pendiente de pago.
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		<a href="{{ path('roompage_deletereg', {'slugHotel': slugHotel, 'idRegistro': registro.id }) }}">Desocupar habitación</a>
+		<a href="{{ path('roompage', {'slugHotel': slugHotel}) }}">Regresar</a>
+	{% else %}
+		<a href="{{ path('roompage', {'slugHotel': slugHotel}) }}">La habitación está libre. Volver a la lista de Registros...</a>
+	{% endif %}
+
+{% endblock %}

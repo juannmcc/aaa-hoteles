@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	{{ form_start(form) }}
+		<h3>Ocupar: {{ reg.idHabitacion }}</h3>
+		{{ form_widget(form) }}
+	{{ form_end(form) }}
+	<a href="{{ path('roompage', {'slugHotel': slugHotel}) }}">Regresar</a>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <main>    	
+        <div class="col-md-12">
+			<a href="{{ path('roompage', {'slugHotel': slugHotel}) }}">Volver al Listado de Registros</a>
+			<table class="table regList">
+				<thead>
+					<tr>
+						<th>#</th><th>Fecha Entrada</th><th>Fecha Salida</th><th>Habitación</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for registro in listaRegistros %}
+						{% if estaDisp(registro.idHabitacion) == true %}
+							<tr>
+								<td>{{ registro.id }}</td>
+							    <td>{{ registro.fechaEntrada|date("m/d/Y") }}</td>
+							    <td>{{ registro.fechaSalida|date("m/d/Y") }}</td>
+							    <td><a href="{{ path('roompage_newreg', {'slugHotel': slugHotel, 'idHabitacion': registro.idHabitacion }) }}">Hab nº{{ registro.idHabitacion }}</a></td>
+						{% else %}
+							<tr class="nowroom">
+								<td>{{ registro.id }} (<span><i>Ocupada</i></span>)</td>
+							    <td>{{ registro.fechaEntrada|date("m/d/Y") }}</td>
+							    <td>{{ registro.fechaSalida|date("m/d/Y") }}</td>
+						    	<td><a href="{{ path('roompage_detailed', {'slugHotel': slugHotel, 'idHabitacion': registro.idHabitacion }) }}" class="roomLink">Hab nº{{ registro.idHabitacion }}</a></td>
+						{% endif %}
+							</tr>
+					{% endfor %}
+				</tbody>
+			</table>                                                 
+        </div>
+    </main>
+</div>
+{% endblock %}

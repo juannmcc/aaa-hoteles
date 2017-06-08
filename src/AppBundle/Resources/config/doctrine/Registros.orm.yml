@@ -1,0 +1,50 @@
+AppBundle\Entity\Registros:
+    type: entity
+    table: registros
+    indexes:
+        idHabitacion:
+            columns:
+                - idHabitacion
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        fechaentrada:
+            type: datetime
+            nullable: false
+            column: fechaEntrada
+        fechasalida:
+            type: datetime
+            nullable: false
+            column: fechaSalida
+        estapagado:
+            type: boolean
+            nullable: false
+            column: estaPagado
+    manyToOne:
+        idhabitacion:
+            targetEntity: Habitaciones
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idHabitacion:
+                    referencedColumnName: id
+            orphanRemoval: false
+    manyToMany:
+        idpersona:
+            targetEntity: Personas
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: idregistro
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+    lifecycleCallbacks: {  }

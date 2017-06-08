@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	
+	<div class="form form-container form-upd-rooms">
+		{{ form_start(form) }}
+		{{ form_widget(form.nombre) }}
+		{{ form_widget(form.planta) }}
+		{{ form_widget(form.idtipohab) }}
+		{{ form_widget(form.idhotel) }}
+		{{ form_widget(form.save, {'label':'Actualizar Habitación'}) }}
+		{{ form_end(form) }}
+	</div>
+	<a href="{{ path('roompage', {'slugHotel': slugHotel}) }}">Cancelar</a>
+
+{% endblock %}

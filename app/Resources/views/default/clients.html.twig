@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <main>
+        <div class="col-md-12">
+	    	<div class="header-page">
+				<h2>Todos los Clientes</h2>
+	    	</div>
+			<ul class="list-group listClientes">
+				<li class="elemCreateClient">
+					<a href="{{ path('roompage', {'slugHotel': slugHotel}) }}" class="returnRoomsPage">
+						<i class="fa fa-caret-left"></i>Volver al panel de Registros
+					</a>
+					{{ form_start(form) }}
+					{{ form_widget(form) }}
+					{{ form_end(form) }}
+				</li>
+				{% for p in listaClientes %}
+					<li>
+						<div><img src="http://i0.wp.com/sustainablenorthflorida.org/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg" class="profile-user-image" /></div>
+						<div><span>{{ p.nombre }}&nbsp;{{ p.apellidos }}</span></div>
+						<div>
+							<a href="{{ path('editclients_page', {'slugHotel': slugHotel, 'idCliente': p.id}) }}"><i class="fa fa-edit"></i></a>
+							<a href="{{ path('deleteclient_page', {'slugHotel': slugHotel, 'idCliente': p.id }) }}"><i class="fa fa-remove"></i></a>
+						</div>
+					</li>
+				{% endfor %}
+			</ul>                                                 
+        </div>
+    </main>
+</div>
+{% endblock %}

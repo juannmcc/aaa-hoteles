@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Registros" table="registros">
+    <indexes>
+      <index name="idHabitacion" columns="idHabitacion"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="fechaentrada" type="datetime" column="fechaEntrada" nullable="false"/>
+    <field name="fechasalida" type="datetime" column="fechaSalida" nullable="false"/>
+    <field name="estapagado" type="boolean" column="estaPagado" nullable="false"/>
+    <many-to-one field="idhabitacion" target-entity="Habitaciones" fetch="LAZY">
+      <join-columns>
+        <join-column name="idHabitacion" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-many field="idpersona" target-entity="Personas" mapped-by="idregistro" fetch="LAZY"/>
+  </entity>
+</doctrine-mapping>

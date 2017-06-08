@@ -1,0 +1,49 @@
+AppBundle\Entity\Hoteles:
+    type: entity
+    table: hoteles
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        nombre:
+            type: string
+            nullable: false
+            length: 64
+            options:
+                fixed: false
+        categoria:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '3'
+        telefono:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        email:
+            type: string
+            nullable: false
+            length: 64
+            options:
+                fixed: false
+        localizacion:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        slug:
+            type: string
+            nullable: false
+            length: 32
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

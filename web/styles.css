@@ -1,0 +1,25 @@
+body > .container { margin-bottom: 50px; }
+.main-navbar { margin-bottom: 0px; }
+.div-logout { min-height: 100px; text-align: center; display: table; }
+.div-logout p { display: table-cell; vertical-align: middle }
+footer { position: fixed; width: 100%; bottom: 0; }
+.home-div { margin-top: 20px; }
+.roomList tbody ul { list-style: none; }
+.roomList tbody ul li { padding: 5px 10px; float: left; text-align: center;}
+.roomList tbody ul li > a span { font-size: 18px; }
+.roomList td ul li:not(.freeRoom) a, .nowroom .roomLink { color: #ba4a51; }
+.roomList tr td:first-child { font-size: 20px; text-align: left; vertical-align: middle; }
+.room-selected { display: none; }
+.nowroom { background-color: #F2F2F2; }
+iframe { border: none; }
+.elemCreateClient { margin: 10px 0; }
+.listClientes { list-style: none; }
+.listClientes > li { display: block; padding: 8px; display: block; float: left; text-align: center; min-width: 150px;}
+@media screen and (min-width: 768px) {
+	.jumbotron .h1, .jumbotron h1 { font-size: 42px; }
+}
+.profile-user-image { margin: 0 auto; max-width: 96px; }
+#appbundle_registros_fechaEntrada_time, #appbundle_registros_fechaSalida_time { display: none !important; }
+#tipo_habs_precioBase { width: 50px; }
+tr td.roomBottomOptions:first-child { vertical-align: top; padding-top: 5px; }
+.nowroom tr span { font-size: 9px; }

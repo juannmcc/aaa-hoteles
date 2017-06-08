@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	
+	<div class="form form-container form-upd-people">
+		{{ form_start(form) }}
+		{{ form_widget(form.nombre) }}
+		{{ form_widget(form.apellidos) }}
+		{{ form_widget(form.save, {'label':'Actualizar Persona'}) }}
+		{{ form_end(form) }}
+	</div>
+	<a href="{{ path('clientspage', {'slugHotel': slugHotel}) }}">Cancelar</a>
+
+{% endblock %}

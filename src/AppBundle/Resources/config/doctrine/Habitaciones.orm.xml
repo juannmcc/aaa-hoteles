@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Habitaciones" table="habitaciones">
+    <indexes>
+      <index name="idTipoHab" columns="idTipoHab"/>
+      <index name="idHotel" columns="idHotel"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nombre" type="string" column="nombre" length="64" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="planta" type="integer" column="planta" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-one field="idtipohab" target-entity="Tipohabs" fetch="LAZY">
+      <join-columns>
+        <join-column name="idTipoHab" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idhotel" target-entity="Hoteles" fetch="LAZY">
+      <join-columns>
+        <join-column name="idHotel" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

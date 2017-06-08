@@ -1,0 +1,44 @@
+AppBundle\Entity\Personas:
+    type: entity
+    table: personas
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        nombre:
+            type: string
+            nullable: false
+            length: 48
+            options:
+                fixed: false
+        apellidos:
+            type: string
+            nullable: false
+            length: 64
+            options:
+                fixed: false
+    manyToMany:
+        idregistro:
+            targetEntity: Registros
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: idpersona
+            joinTable:
+                name: clientes
+                joinColumns:
+                    -
+                        name: idPersona
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: idRegistro
+                        referencedColumnName: id
+            orderBy: null
+    lifecycleCallbacks: {  }

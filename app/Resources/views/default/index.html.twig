@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+        <div class="row home-div">
+            <div class="col-md-4">
+                <div class="jumbotron"> 
+                    <h1>Habitaciones</h1> 
+                    <p><table>
+                        {# <tr><th>Habitación</th><th>Piso</th></tr> #}
+                    {% for habitacion in habitaciones if habitacion.id < 4 %}
+                        <tr>
+                        <td>Hab. {{ habitacion.id }}
+                            {% if habitacion.nombre is not null %}
+                                - {{ habitacion.nombre }}
+                            {% else %}
+                                - <span>Sin nombre</span>
+                            {% endif %}
+                        </td>
+                        </tr>
+                    {% endfor %}
+                    </table>
+                    </p> 
+                    <p><a href="{{ path('roompage', {'slugHotel': 'alcorcon'}) }}" class="btn btn-primary btn-lg" role="button">Acceder</a></p> 
+                </div>                                                  
+            </div>
+           </div>
+{% endblock %}

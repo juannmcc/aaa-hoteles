@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <main>
+        <div class="col-md-12">
+	    	<div class="header-page">
+				<h2>Registros del Hotel {{ nombreHotel }}</h2>
+	    	</div>
+	    	{% for flash_message in app.session.flashbag.get('notice') %}
+			    <div class="flash-notice alert alert-success">
+			        {{ flash_message }}
+			    </div>
+			{% endfor %}
+			<table class="table roomList">
+				<thead><th>Piso</th><th>Habitaciones</th></tr></thead>
+				<tbody>
+					{% set numPisos = 0 %}
+					{% for pisoDeHotel in pisosXHotel %}
+					{% set numPisos = loop.index %}
+					<tr>
+					    <td>
+					    	{{ loop.index }}
+					    	{% if loop.last == true %}
+						    	<a class="slugGetter" href="{{ path('roompage_remove_floor', {'slugHotel': slugHotel, 'planta': loop.index}) }}"><i class="fa fa-remove"></i></a>
+						    {% endif %}
+					    </td>
+					    <td>
+						    <ul>
+						    	{% for habitacion in pisoDeHotel %}
+						    		{% if estaDisp(habitacion.id) == true %}
+						    			<li class="freeRoom">
+						    				<a href="{{ path('roompage_newreg', {'slugHotel': slugHotel, 'idHabitacion': habitacion.id }) }}" class="roomLink">
+						    		{% else %}
+						    			<li>
+						    				<a href="{{ path('roompage_detailed', {'slugHotel': slugHotel, 'idHabitacion': habitacion.id }) }}" class="roomLink">
+						    		{% endif %} 
+						    				<span>{{ habitacion.id }}</span>
+											<div>
+												<a href="{{ path('updateroom_page', {'slugHotel': slugHotel, 'idHabitacion': habitacion.id, 'numPiso': loop.parent.loop.index }) }}"><i class="fa fa-edit"></i></a>
+												<a href="{{ path('roompage_deleteroom', {'slugHotel': slugHotel, 'idHabitacion': habitacion.id }) }}"><i class="fa fa-remove"></i></a>
+											</div>
+						    			</a>
+						    			{# 
+							    			{% if habitacion.nombre is not null %}
+				                                - {{ habitacion.nombre }}
+				                            {% else %}
+				                                - <span class="noNameTag">Sin nombre</span>
+				                            {% endif %}
+			                            #}
+						    		</li>
+						    	{% endfor %}
+					    	</ul>
+					    </td>
+					</tr>
+					{% endfor %}
+					<tr>
+						<td colspan="2" class="roomBottomOptions">
+							<p><a href="{{ path('roompage_create_2', {'slugHotel': slugHotel, 'numPisos': numPisos+1}) }}">
+								<i class="fa fa-plus"></i> 
+								Añadir una habitación/piso
+							</a></p>
+						</td>
+						<td colspan="2" class="roomBottomOptions">
+							<p><a href="{{ path('roomtype_create', {'slugHotel': slugHotel}) }}">
+								<i class="fa fa-bath"></i> 
+								Administrar Tipos de Habitación
+							</a></p>
+							<p><a class="linkToClientsPage" href="{{ path('clientspage', {'slugHotel': slugHotel} ) }}">
+								<i class="fa fa-users"></i>
+								Ver Lista de clientes
+							</a></p>
+							<p><a href="{{ path('regpage', {'slugHotel': slugHotel} ) }}">
+								<i class="fa fa-list"></i>
+								Ver Historial de Registros
+							</a></p>
+						</td>
+					</tr>
+				</tbody>
+			</table>                                                 
+        </div>
+        {# <div class="col-md-4 room-details">
+            <div>
+				<iframe src="{{ path('roompage_detailed', {'slugHotel': 'alcorcon', 'idHabitacion': '-1'}) }}" id="room-details-container">
+					
+				</iframe>
+
+            </div>                                                  
+        </div>#}
+    </main>
+</div>
+{% endblock %}
